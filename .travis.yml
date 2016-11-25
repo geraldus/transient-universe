@@ -61,7 +61,7 @@ script:
   fi
 - |
   if [[ -f "$HOME/.cache/d/0" && ! -f "$HOME/.cache/1" ]]; then
-    curl -L "http://ghcjs.tolysz.org/$TAR" -o "~/$TAR"
+    curl -L "http://ghcjs.tolysz.org/$TAR" -o "$HOME/$TAR"
     tar xzf "$TAR"
     stack install ghcjs*
     touch ~/.cache/1
