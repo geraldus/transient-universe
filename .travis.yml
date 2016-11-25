@@ -30,7 +30,7 @@ matrix:
   # The Stack builds. We can pass in arbitrary Stack arguments via the ARGS
   # variable, such as using --stack-yaml to point to a different file.
   - env: BUILD=stack ARGS="--stack-yaml stack-ghcjs.yaml"
-      TAR=http://ghcjs.tolysz.org/ghc-8.0-2016-11-03-lts-7.7-9007007.tar.gz
+      TAR=ghc-8.0-2016-11-03-lts-7.7-9007007.tar.gz
     compiler: ": #GHCJS 7.7"
 
 before_install:
@@ -53,7 +53,7 @@ script:
   fi
 - |
   if [[ ! -f ~/.cache/1 ]]; then
-    curl -L "$TAR" -o "~/$TAR"
+    curl -L "http://ghcjs.tolysz.org/$TAR" -o "~/$TAR"
     tar xzf "$TAR"
     stack install ghcjs*
     touch ~/.cache/1
