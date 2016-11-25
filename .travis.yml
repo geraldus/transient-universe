@@ -4,6 +4,10 @@ sudo: false
 # Choose a lightweight base image; we provide our own build tools.
 language: c
 
+addons:
+  packages:
+    - libgmp3-dev
+
 # Caching so the next build will be fast too.
 cache:
   timeout: 1000
@@ -12,6 +16,10 @@ cache:
   - $HOME/.ghcjs
   - $HOME/.local/bin
   - $HOME/.cache
+
+before_cache:
+- mkdir -p ~/.cache/d
+- cp ~/.cache/* ~/.cache/d/
 
 # The different configurations we want to test. We have BUILD=cabal which uses
 # cabal-install, and BUILD=stack which uses Stack. More documentation on each
@@ -53,7 +61,7 @@ script:
     ./exit1
   fi
 - |
-  if [[ ! -f "~/.cache/1" ]]; then
+  if [[ -f "~/.cache/d/0" && ! -f "~/.cache/1" ]]; then
     curl -L "http://ghcjs.tolysz.org/$TAR" -o "~/$TAR"
     tar xzf "$TAR"
     stack install ghcjs*
@@ -61,7 +69,7 @@ script:
     ./exit1
   fi
 - |
-  if [[ ! -f "~/.cache/2" ]]; then
+  if [[ -f "~/.cache/d/1" && ! -f "~/.cache/2" ]]; then
     stack setup --ghc-bindist ~/$TAR
     touch ~/.cache/2
     ./exit1
