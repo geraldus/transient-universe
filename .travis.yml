@@ -4,10 +4,6 @@ sudo: false
 # Choose a lightweight base image; we provide our own build tools.
 language: c
 
-addons:
-  packages:
-    - libgmp3-dev
-
 # Caching so the next build will be fast too.
 cache:
   timeout: 1000
@@ -40,6 +36,7 @@ matrix:
   - env: BUILD=stack ARGS="--stack-yaml stack-ghcjs.yaml"
       TAR=ghc-8.0-2016-11-03-lts-7.7-9007007.tar.gz
     compiler: ": #GHCJS 7.7"
+    addons: {apt: {packages: [libgmp3-dev]}}
 
 before_install:
 # Using compiler above sets CC to an invalid value, so unset it
