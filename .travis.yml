@@ -42,16 +42,6 @@ before_install:
 - export PATH=$HOME/.local/bin:$PATH
 
 
-install:
-
-- |
-  echo "Building dependencies."
-  case "$BUILD" in
-    stack)
-      stack --no-terminal $ARGS test --only-dependencies
-      ;;
-  esac
-
 script:
 - |
   if [[ ! -f ~/.cache/0 ]]; then
