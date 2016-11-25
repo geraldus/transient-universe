@@ -75,5 +75,7 @@ script:
     ./exit1
   fi
 - |
-  stack --no-terminal test $ARGS
-  stack --no-terminal haddock --no-haddock-deps $ARGS
+  if [[ -f "~/.cache/d/2" ]]; then
+    stack --no-terminal test $ARGS
+    stack --no-terminal haddock --no-haddock-deps $ARGS
+  fi
