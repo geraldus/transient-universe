@@ -63,15 +63,17 @@ script:
   if [[ -f "$HOME/.cache/d/0" && ! -f "$HOME/.cache/1" ]]; then
     pwd
     curl -L "http://ghcjs.tolysz.org/$TAR" -o "$HOME/$TAR"
-    tar xzf "$HOME/$TAR"
+    tar xzf "$HOME/$TAR" -C "$HOME"
     ls -l "$HOME"
-    stack install "$HOME/ghcjs*"
+    for f in "$HOME/ghcjs-0.2.*" do
+      stack install "$f"
+    done
     touch ~/.cache/1
     ./exit1
   fi
 - |
   if [[ -f "$HOME/.cache/d/1" && ! -f "$HOME/.cache/2" ]]; then
-    stack setup --ghc-bindist ~/$TAR
+    stack setup --ghc-bindist "$HOME/$TAR"
     touch ~/.cache/2
     ./exit1
   fi
