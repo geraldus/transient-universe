@@ -43,8 +43,9 @@ before_install:
 
 
 script:
+- ls -l ~/.cache
 - |
-  if [[ ! -f ~/.cache/0 ]]; then
+  if [[ ! -f "~/.cache/0" ]]; then
     curl -L https://www.stackage.org/stack/linux-x86_64 \
       | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
     stack --no-terminal --install-ghc install hsc2hs
@@ -52,7 +53,7 @@ script:
     ./exit1
   fi
 - |
-  if [[ ! -f ~/.cache/1 ]]; then
+  if [[ ! -f "~/.cache/1" ]]; then
     curl -L "http://ghcjs.tolysz.org/$TAR" -o "~/$TAR"
     tar xzf "$TAR"
     stack install ghcjs*
@@ -60,7 +61,7 @@ script:
     ./exit1
   fi
 - |
-  if [[ ! -f ~/.cache/2 ]]; then
+  if [[ ! -f "~/.cache/2" ]]; then
     stack setup --ghc-bindist ~/$TAR
     touch ~/.cache/2
     ./exit1
