@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Caching.  Please restart."
+
+exit 1
