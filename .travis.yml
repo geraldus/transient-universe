@@ -63,8 +63,7 @@ script:
   if [[ -f "$HOME/.cache/0" && ! -f "$HOME/.cache/d/1" ]]; then
     curl -L "http://ghcjs.tolysz.org/$TAR" -o "$HOME/$TAR"
     tar xzf "$HOME/$TAR" -C "$HOME"
-    ls -l "$HOME/ghcjs-0.2.1.9007007/"
-    stack install  "$HOME/ghcjs-0.2.1.9007007/ghcjs.cabal"
+    bash -c 'cd "$HOME/ghcjs-0.2.1.9007007/ghcjs.cabal" && stack --no-terminal install .'
     touch ~/.cache/1
     ./exit1
   fi
