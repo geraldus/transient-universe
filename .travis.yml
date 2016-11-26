@@ -69,6 +69,7 @@ script:
     cd "$HOME/ghcjs-0.2.1.9007007/"
     stack install .
     cd $PWD
+    pwd
     touch ~/.cache/1
     ./exit1
   fi
