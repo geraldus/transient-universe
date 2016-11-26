@@ -65,7 +65,8 @@ script:
     curl -L "http://ghcjs.tolysz.org/$TAR" -o "$HOME/$TAR"
     tar xzf "$HOME/$TAR" -C "$HOME"
     ls -l "$HOME"
-    for f in "$HOME/ghcjs-0.2.*" do
+    for f in "$HOME/ghcjs-0.2.*"
+    do
       stack install "$f"
     done
     touch ~/.cache/1
