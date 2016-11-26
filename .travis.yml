@@ -60,7 +60,7 @@ script:
     ./exit1
   fi
 - |
-  if [[ ! -f "$HOME/.cache/d/1" ]]; then
+  if [[ -f "$HOME/.cache/0" && ! -f "$HOME/.cache/d/1" ]]; then
     curl -L "http://ghcjs.tolysz.org/$TAR" -o "$HOME/$TAR"
     tar xzf "$HOME/$TAR" -C "$HOME"
     ls -l "$HOME/ghcjs-0.2.1.9007007/"
@@ -69,11 +69,13 @@ script:
     ./exit1
   fi
 - |
-  if [[ ! -f "$HOME/.cache/d/2" ]]; then
+  if [[ -f "$HOME/.cache/1" && ! -f "$HOME/.cache/d/2" ]]; then
     stack setup $ARGS --ghc-bindist "$HOME/$TAR"
     touch ~/.cache/2
     ./exit1
-  else
+  fi
+- |
+  if [[ -f "$HOME/.cache/d/2" ]]; then
     stack --no-terminal test $ARGS
     stack --no-terminal haddock --no-haddock-deps $ARGS
   fi
