@@ -66,6 +66,7 @@ install:
     tar xzf "$HOME/$TAR" -C "$HOME"
     ls -l "$HOME/ghcjs-0.2.1.9007007/"
     export PWD=`pwd`
+    echo "$PWD"
     cd "$HOME/ghcjs-0.2.1.9007007/"
     stack install .
     cd "$PWD"
