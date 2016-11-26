@@ -47,7 +47,7 @@ before_install:
 - export PATH=$HOME/.local/bin:$PATH
 
 
-script:
+install:
 - |
   ls -l ~/.cache
   ls -l ~/.cache/d
@@ -65,11 +65,10 @@ script:
     curl -L "http://ghcjs.tolysz.org/$TAR" -o "$HOME/$TAR"
     tar xzf "$HOME/$TAR" -C "$HOME"
     ls -l "$HOME/ghcjs-0.2.1.9007007/"
-    PWD=`pwd`
+    export PWD=`pwd`
     cd "$HOME/ghcjs-0.2.1.9007007/"
     stack install .
-    cd $PWD
-    pwd
+    cd "$PWD"
     touch ~/.cache/1
     ./exit1
   fi
@@ -79,6 +78,8 @@ script:
     touch ~/.cache/2
     ./exit1
   fi
+
+script:
 - |
   if [[ -f "$HOME/.cache/d/2" ]]; then
     stack --no-terminal test $ARGS
